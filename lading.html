@@ -31,8 +31,13 @@
                             dark: '#2E7D32',    /* Verde oscuro */
                             black: '#1A1A1A',   /* Negro/gris muy oscuro */
                             gray: '#666666',    /* Gris medio */
-                            bg: '#F5F5F5'       /* Gris claro fondo */
+                            bg: '#F5F5F5',       /* Gris claro fondo */
+                            section:'#FAFAFA',
+                            darkText:'#1C2D05',
+                            logoColor:'#C9AA8F',
+                            aColorBlack:'#494949'
                         }
+                        
                     }
                 }
             }
@@ -99,30 +104,36 @@
     <header id="navbar" class="fixed top-0 w-full z-50 py-5 transition-all duration-300">
         <div class="max-w-[1300px] mx-auto px-6 md:px-12 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <span class="text-3xl font-extrabold nav-text tracking-tighter" style="color: white;">DGS</span>
-                <span class="material-symbols-outlined text-brand-main text-[28px]">eco</span>
+                <span class="text-3xl font-extrabold nav-text tracking-tighter" style="color: black;">DGS</span>
+                <div class="w-[3px] h-7 bg-brand-logoColor"></div>
+                <div class="flex flex-col gap-0 leading-none">
+                    <span class="text-brand-logoColor text-[8px]">AGRICULTURAL</span>
+                    <span class="text-brand-logoColor text-[8px]">INVESTMENTS</span>
+                    <span class="text-brand-logoColor text-[8px]">IN A SUSTAINABLE WAY</span>
+
+                </div>
             </div>
 
             <nav class="hidden lg:flex items-center gap-8">
                 <a href="#"
-                    class="nav-text text-white font-semibold text-[15px] hover:text-brand-main transition-colors">Inicio</a>
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors">Inicio</a>
                 <a href="#"
-                    class="nav-text text-white font-semibold text-[15px] hover:text-brand-main transition-colors">Qué
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors">Qué
                     hacemos</a>
                 <a href="#"
-                    class="nav-text text-white font-semibold text-[15px] hover:text-brand-main transition-colors">Por
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors">Por
                     qué elegirnos</a>
                 <a href="#"
-                    class="nav-text text-white font-semibold text-[15px] hover:text-brand-main transition-colors">Nuestros
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors">Nuestros
                     clientes</a>
                 <a href="#"
-                    class="nav-text text-white font-semibold text-[15px] hover:text-brand-main transition-colors">Nuestra
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors">Nuestra
                     experiencia</a>
             </nav>
 
             <div class="hidden lg:block">
                 <a href="#"
-                    class="bg-brand-main text-white font-semibold text-[15px] px-6 py-2.5 rounded-xl hover:bg-brand-dark transition-colors inline-block text-center shadow-lg shadow-brand-main/20">
+                    class="bg-brand-black text-white font-semibold text-[15px] px-6 py-[7px] rounded-xl hover:bg-brand-dark transition-colors inline-block text-center shadow-lg shadow-brand-main/20">
                     Contáctanos
                 </a>
             </div>
@@ -134,12 +145,11 @@
     </header>
 
     <!-- 2. HERO SECTION -->
-    <section class="relative w-full min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden bg-brand-black">
+    <section class="relative w-full min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden bg-brand-section">
         <div class="absolute inset-0 z-0">
             <!-- Paisaje agrícola con overlay oscuro -->
-            <img src="./images/Seccion1- 1.jpg"
-                class="w-full h-full object-cover opacity-50" alt="Paisaje agrícola">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-black/90 to-brand-black/30"></div>
+
+            <div class="absolute inset-0 bg-gradient-to-r  to-brand-black/30"></div>
         </div>
 
         <div
@@ -155,7 +165,7 @@
 
                 <!-- Título Principal -->
                 <h1
-                    class="text-white text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] font-bold leading-[1.05] tracking-tight mb-8">
+                    class="text-[3.5rem] md:text-[4.5rem] lg:text-[5rem] font-bold leading-[1.05] tracking-tight mb-8 text-brand-darkText">
                     Gestión agrícola<br>
                     <span
                         class="text-brand-main underline decoration-brand-dark underline-offset-8">Profesional.</span><br>
@@ -594,14 +604,7 @@
     <!-- Script for sticky navbar effect and simple animations -->
     <script>
         // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('nav-scrolled');
-            } else {
-                nav.classList.remove('nav-scrolled');
-            }
-        });
+
 
         // Simple Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
