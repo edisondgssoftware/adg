@@ -1,0 +1,8 @@
+.vs/
+*.sqlite
+*.wsuo
+*.suo
+*.user
+*.db
+*.opendb
+.vscode/
