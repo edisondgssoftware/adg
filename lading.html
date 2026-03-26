@@ -11,7 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/dgs-192x192.ico">
 
+
+    
     <!-- Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@400,0,0,24"
         rel="stylesheet" />
@@ -78,7 +81,6 @@
 
         .nav-scrolled {
             background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(8px);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
@@ -160,13 +162,13 @@
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="lg:hidden nav-text text-brand-black z-50 relative">
+            <button id="mobile-menu-btn" class="lg:hidden nav-text text-brand-black z-[70] relative">
                 <span class="material-symbols-outlined text-3xl">menu</span>
             </button>
         </div>
 
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col items-center justify-center gap-8">
+        <div id="mobile-menu" class="fixed inset-0 bg-white z-[60] transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col items-center justify-center gap-8">
             <a href="#home" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_home">Inicio</a>
             <a href="#services" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_services">Qué hacemos</a>
             <a href="#why-us" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_why_us">Por qué elegirnos</a>
@@ -219,7 +221,7 @@
                 </h1>
 
                 <!-- Subtítulo -->
-                <p class="text-brand-black text-[18px] md:text-[16px] font-normal leading-relaxed mb-10 w-[700px]" data-key="hero_subtitle">
+                <p class="text-brand-black text-[18px] md:text-[16px] font-normal leading-relaxed mb-10 max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl" data-key="hero_subtitle">
                    
                         Administramos tu inversión agrícola de principio a fin con servicios integrados, gestión profesional
                         y tecnología para maximizar la rentabilidad de manera sustentable.
@@ -594,7 +596,7 @@
                     <div class="text-center">
                         <h3 class="text-brand-black text-xl font-bold">Guillermo Correa Benedetti</h3>
                         <p class="text-brand-main font-semibold text-sm mb-4" data-key="member_1_role">Gerente General</p>
-                        <p class="text-brand-gray text-sm leading-relaxed text-left" data-key="member_1_desc">Ingeniero Comercial y MBA del IE
+                        <p class="text-brand-gray text-sm leading-relaxed text-center" data-key="member_1_desc">Ingeniero Comercial y MBA del IE
                             Business School de Madrid. Trabajó por seis años en Grupo ENEL, participando en operaciones
                             financieras y M&A. Fundador de DGS, administradora de grandes inversiones agrícolas
                             chilenas.</p>
@@ -986,12 +988,15 @@
 
         function toggleMobileMenu() {
             const isHidden = mobileMenu.classList.contains('translate-x-full');
+            const menuIcon = mobileMenuBtn.querySelector('span');
             if (isHidden) {
                 mobileMenu.classList.remove('translate-x-full');
                 document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                menuIcon.textContent = 'close';
             } else {
                 mobileMenu.classList.add('translate-x-full');
                 document.body.style.overflow = '';
+                menuIcon.textContent = 'menu';
             }
         }
 
