@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DGS - Gestión Agrícola</title>
+
+    <!-- Modern Premium Font: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
+
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@400,0,0,24"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                    'hero-pattern': "url('./images/Fondo inicio.webp')",
+                    'card-1':"url('./images/Seccion1- 1.webp')",
+                    'card-2':"url('./images/Seccion1 - 2.webp')",
+                    'card-3':"url('./images/Seccion 1 -3.webp')",
+                    'card-4':"url('./images/Seccion 1 -4.webp')"
+                },
+                    colors: {
+                        brand: {
+                            main: '#6BA30C',    /* Verde principal */
+                            dark: '#2E7D32',    /* Verde oscuro */
+                            black: '#1A1A1A',   /* Negro/gris muy oscuro */
+                            gray: '#666666',    /* Gris medio */
+                            bg: '#F5F5F5',       /* Gris claro fondo */
+                            section:'#FAFAFA',
+                            darkText:'#1C2D05',
+                            logoColor:'#C9AA8F',
+                            aColorBlack:'#494949',
+                            mainOscuro:'#385213',
+                            mainOscuro2:'#527c0f',
+                        }
+                        
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Smooth navbar transition */
+        #navbar {
+            transition: all 0.3s ease;
+        }
+
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-scrolled .nav-text {
+            color: #1A1A1A !important;
+        }
+
+        /* Grid specific styles for section 5 */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .card-large {
+                grid-column: 1 / -1;
+                min-height: 450px;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-gray antialiased w-full relative">
+
+    <!-- 1. NAVBAR -->
+    <header id="navbar" class="fixed top-0 w-full z-50 py-5 transition-all duration-300">
+        <div class="max-w-[1300px] mx-auto px-6 md:px-12 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-3xl font-extrabold nav-text tracking-tighter" style="color: black;">DGS</span>
+                <div class="w-[3px] h-7 bg-brand-logoColor"></div>
+                <div class="flex flex-col gap-0 leading-none">
+                    <span class="text-brand-logoColor text-[8px]" data-key="logo_sub_1">AGRICULTURAL</span>
+                    <span class="text-brand-logoColor text-[8px]" data-key="logo_sub_2">INVESTMENTS</span>
+                    <span class="text-brand-logoColor text-[8px]" data-key="logo_sub_3">IN A SUSTAINABLE WAY</span>
+
+                </div>
+            </div>
+
+            <nav class="hidden lg:flex items-center gap-8">
+                <a href="#home"
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors" data-key="nav_home">Inicio</a>
+                <a href="#services"
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors" data-key="nav_services">Qué hacemos</a>
+                <a href="#why-us"
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors" data-key="nav_why_us">Por qué elegirnos</a>
+                <a href="#clients"
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors" data-key="nav_clients">Nuestros clientes</a>
+                <a href="#experience"
+                    class="nav-text text-brand-aColorBlack font-semibold text-[15px] hover:text-brand-main transition-colors" data-key="nav_experience">Nuestra experiencia</a>
+            </nav>
+
+            <div class="hidden lg:flex items-center gap-4">
+                <!-- Language Switcher -->
+                <div class="relative group">
+                    <button id="lang-btn" onclick="toggleLangDropdown()" class="flex items-center gap-2 nav-text text-brand-black font-medium hover:text-brand-main transition-colors focus:outline-none">
+                        <span id="current-flag">🇪🇸</span>
+                        <span id="current-lang">ES</span>
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+                    </button>
+                    <div id="lang-dropdown" class="absolute right-0 top-full mt-2 w-32 bg-white rounded-lg shadow-xl border border-gray-100 hidden transition-all z-50">
+                        <button onclick="changeLanguage('es')" class="flex items-center gap-3 w-full px-4 py-2 hover:bg-gray-50 text-left text-sm transition-colors rounded-t-lg">
+                            <span>🇪🇸</span> Español
+                        </button>
+                        <button onclick="changeLanguage('en')" class="flex items-center gap-3 w-full px-4 py-2 hover:bg-gray-50 text-left text-sm transition-colors rounded-b-lg">
+                            <span>🇺🇸</span> English
+                        </button>
+                    </div>
+                </div>
+
+                <a href="#contact"
+                    class="bg-brand-black text-white font-semibold text-[15px] px-6 py-[7px] rounded-xl hover:bg-brand-dark transition-colors inline-block text-center shadow-lg shadow-brand-main/20" data-key="nav_contact">
+                    Contáctanos
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="lg:hidden nav-text text-brand-black z-50 relative">
+                <span class="material-symbols-outlined text-3xl">menu</span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        </header>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 lg:hidden flex flex-col items-center justify-center gap-8">
+            <a href="#home" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_home">Inicio</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_services">Qué hacemos</a>
+            <a href="#why-us" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_why_us">Por qué elegirnos</a>
+            <a href="#clients" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_clients">Nuestros clientes</a>
+            <a href="#experience" onclick="toggleMobileMenu()" class="text-2xl font-bold text-brand-black" data-key="nav_experience">Nuestra experiencia</a>
+            
+            <div class="flex gap-4 mt-4">
+                <button onclick="changeLanguage('es'); toggleMobileMenu()" class="px-4 py-2 border rounded-lg hover:bg-gray-50 flex items-center gap-2">
+                    <span>🇪🇸</span> ES
+                </button>
+                <button onclick="changeLanguage('en'); toggleMobileMenu()" class="px-4 py-2 border rounded-lg hover:bg-gray-50 flex items-center gap-2">
+                    <span>🇺🇸</span> EN
+                </button>
+            </div>
+
+            <a href="#contact" onclick="toggleMobileMenu()" class="mt-4 bg-brand-black text-white font-semibold text-lg px-8 py-3 rounded-xl hover:bg-brand-dark transition-colors shadow-lg">
+                <span data-key="nav_contact">Contáctanos</span>
+            </a>
+        </div>
+
+    <!-- 2. HERO SECTION -->
+    <section id="home" class="relative w-full min-h-[90vh] flex items-center pt-24 pb-16 overflow-hidden bg-brand-section bg-hero-pattern bg-cover bg-center bg-no-repeat">
+        <div class="absolute inset-0 z-0">
+            <!-- Paisaje agrícola con overlay oscuro -->
+
+            <div class="absolute inset-0 bg-white/85 lg:bg-gradient-to-r lg:from-white/90 lg:to-transparent"></div>
+        </div>
+
+        <div
+            class="max-w-[1300px] mx-auto px-6 md:px-12 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-7 fade-in">
+                <!-- Etiqueta superior -->
+                <div
+                    class="inline-block border border-brand-black/40 bg-brand-white/10 rounded-3xl px-5 py-2 mb-8 backdrop-blur-sm max-w-full">
+                    <span class="text-brand-black font-semibold text-[13px] tracking-wide uppercase" data-key="hero_tag">
+                        Transformamos la forma de invertir en agricultura
+                    </span>
+                </div>
+
+                <!-- Título Principal -->
+                <h1
+                    class="text-[2.5rem] md:text-[4.5rem] lg:text-[5rem] font-bold leading-[1.1] tracking-tight mb-8 text-brand-darkText">
+                    <span data-key="hero_title_1">Gestión agrícola</span><br>
+                    <span
+                        class="text-brand-main  decoration-brand-dark" data-key="hero_title_2">Profesional.</span><br>
+                    <span
+                        class="text-brand-darkText  decoration-brand-dark" data-key="hero_title_3">Integral.</span><br>
+                    <span class="text-brand-main  decoration-brand-dark" data-key="hero_title_4">Rentable</span>
+                </h1>
+
+                <!-- Subtítulo -->
+                <p class="text-brand-black text-[18px] md:text-[16px] font-normal leading-relaxed mb-10 w-[700px]" data-key="hero_subtitle">
+                   
+                        Administramos tu inversión agrícola de principio a fin con servicios integrados, gestión profesional
+                        y tecnología para maximizar la rentabilidad de manera sustentable.
+                    
+                </p>
+
+                <!-- Botón CTA -->
+
+                <a href="#contact" class="flex items-center justify-center rounded-full bg-[#1A2E1A] text-[#FFF9EB] py-2 pl-8 pr-2 hover:bg-[#254125] transition-colors duration-300 shadow-lg w-fit">
+                    <span class="text-xl font-medium pr-6" data-key="hero_cta">Contáctanos</span>
+
+                    <span class="flex items-center justify-center w-10 h-10 rounded-full bg-[#FFF9EB] text-[#1A2E1A]">
+                        <span class="material-symbols-outlined text-xl">
+                            arrow_outward
+                        </span>
+                    </span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. BARRA DE MÉTRICAS -->
+    <section class="max-w-[1300px] mx-auto px-6 md:px-12 -mt-[-50px] relative z-20 mb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <!-- Card 1 -->
+            <div
+                class="bg-black/40 bg-blend-overlay p-8 h-[350px] rounded-2xl shadow-xl relative overflow-hidden group hover:-translate-y-1 transition-transform bg-card-1 bg-cover bg-center bg-no-repeat ">
+                <div class="text-white font-bold text-5xl mb-2">+1.000</div>
+                <div class="text-white text-sm font-medium" data-key="metrics1_1_desc">Hectáreas administradas</div>
+            </div>
+            <!-- Card 2 -->
+            <div
+                class="relative h-[350px] rounded-2xl shadow-xl overflow-hidden group">
+                
+                <img src="./images/Seccion1 - 2.webp" alt="Cosecha" class="absolute inset-0 w-full h-full object-cover  ">
+
+                <div class="absolute inset-0 bg-black/50 transition-colors "></div>
+
+
+                <div class="relative z-10 p-8 h-full flex flex-col">
+                    <div class="text-white font-bold text-5xl mb-2">+28M</div>
+                    <div class="text-white/90 text-sm font-medium leading-tight" data-key="metrics1_2_desc">
+                        Kilos de fruta producidos al año
+                    </div>
+                </div>
+
+  
+            </div>
+            <!-- Card 3 -->
+            <div
+                class="bg-black/40 bg-blend-overlay p-8 h-[350px] rounded-2xl shadow-xl relative overflow-hidden group hover:-translate-y-1 transition-transform bg-card-3 bg-cover bg-center bg-no-repeat">
+                <div class="text-white font-bold text-4xl mb-2">-18%</div>
+                <div class="text-white text-sm font-medium" data-key="metrics1_3_desc">Disminución en costos operativos</div>
+            </div>
+            <!-- Card 4 -->
+            <div
+                class="bg-black/40 bg-blend-overlay p-8 h-[350px] rounded-2xl shadow-xl relative overflow-hidden group hover:-translate-y-1 transition-transform bg-card-4 bg-cover bg-center bg-no-repeat">
+                <div class="text-white font-bold text-4xl mb-2">+22%</div>
+                <div class="text-white text-sm font-medium" data-key="metrics1_4_desc">Incremento promedio en rendimiento por hectárea</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. NUESTRO MODELO DE SERVICIOS -->
+    <section id="services" class="py-24 bg-brand-bg">
+        <div class="max-w-[1200px] mx-auto px-6 md:px-12">
+            <!-- Header Centrado -->
+            <div class="mb-24 text-center mx-auto">
+                <span class="text-brand-main font-bold text-[13px] tracking-widest uppercase mb-4 block" data-key="services_tag">// NUESTRO
+                    MODELO DE SERVICIOS</span>
+                <h2 class="text-brand-black text-[2.5rem] md:text-[3rem] font-bold leading-tight">
+                    <span data-key="services_title_1">Nos Hacemos Cargo De</span> <span class="text-brand-main" data-key="services_title_2">Cada Etapa</span></h2>
+                <h2 class="text-brand-black text-[2.5rem] md:text-[3rem] font-bold leading-tight mb-6">
+                    <span class="text-brand-black" data-key="services_title_3">Del Negocio Agrícola</span></h2>
+                <p class="text-brand-gray text-[18px] leading-relaxed max-w-3xl mx-auto" data-key="services_desc">Desde la identificación del campo hasta la
+                    operación integral del negocio y la comercialización. Gestionamos cada etapa con visión estratégica,
+                    disciplina financiera y ejecución profesional.</p>
+            </div>
+
+            <div class="relative flex flex-col gap-14">
+                <!-- Línea Vertical Conectora -->
+                <div class="absolute left-[27px] top-6 bottom-6 w-[3px] bg-gray-200 hidden md:block"></div>
+
+                <!-- Servicio 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-[60px_1fr_400px] gap-12 items-center relative z-10">
+                    <!-- Número -->
+                    <div class="w-14 h-14 bg-[#1A2E1A] text-white rounded-full flex items-center justify-center font-bold text-xl shrink-0 z-10 md:mx-0 mx-auto border-4 border-brand-bg shadow-sm">1</div>
+                    
+                    <!-- Texto -->
+                    <div class="text-center md:text-left pr-8">
+                        <h3 class="text-brand-black font-bold text-[26px] mb-4" data-key="serv_1_title">Identificación y evaluación de campos</h3>
+                        <p class="text-brand-gray leading-relaxed text-[16px]" data-key="serv_1_desc">Identificación y análisis técnico, productivo y financiero de oportunidades agrícolas para decisiones de inversión informadas.</p>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="h-[180px] w-full rounded-[2rem] overflow-hidden shadow-lg">
+                        <img src="./images/Seccion 2 - 1.webp" class="w-full h-full object-cover" alt="Identificación de campos">
+                    </div>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-[60px_1fr_400px] gap-12 items-center relative z-10">
+                    <!-- Número -->
+                    <div class="w-14 h-14 bg-[#1A2E1A] text-white rounded-full flex items-center justify-center font-bold text-xl shrink-0 z-10 md:mx-0 mx-auto border-4 border-brand-bg shadow-sm">2</div>
+                    
+                    <!-- Texto -->
+                    <div class="text-center md:text-left pr-8">
+                        <h3 class="text-brand-black font-bold text-[26px] mb-4" data-key="serv_2_title">Desarrollo de proyecto</h3>
+                        <p class="text-brand-gray leading-relaxed text-[16px]" data-key="serv_2_desc">Planificación e implementación del proyecto agrícola: diseño productivo, infraestructura, estructura operativa y modelo de gestión.</p>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="h-[180px] w-full rounded-[2rem] overflow-hidden shadow-lg">
+                        <img src="./images/Seccion 2 - 2.webp" class="w-full h-full object-cover" alt="Desarrollo de proyecto">
+                    </div>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="grid grid-cols-1 md:grid-cols-[60px_1fr_400px] gap-12 items-center relative z-10">
+                    <!-- Número -->
+                    <div class="w-14 h-14 bg-[#1A2E1A] text-white rounded-full flex items-center justify-center font-bold text-xl shrink-0 z-10 md:mx-0 mx-auto border-4 border-brand-bg shadow-sm">3</div>
+                    
+                    <!-- Texto -->
+                    <div class="text-center md:text-left pr-8">
+                        <h3 class="text-brand-black font-bold text-[26px] mb-4" data-key="serv_3_title">Administración del negocio agrícola</h3>
+                        <p class="text-brand-gray leading-relaxed text-[16px]" data-key="serv_3_desc">Gestión administrativa, financiera y estratégica del negocio, asegurando orden, trazabilidad y control permanente.</p>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="h-[180px] w-full rounded-[2rem] overflow-hidden shadow-lg">
+                        <img src="./images/Seccion 2 - 3.webp" class="w-full h-full object-cover" alt="Administración del negocio">
+                    </div>
+                </div>
+
+                <!-- Servicio 4 -->
+                <div class="grid grid-cols-1 md:grid-cols-[60px_1fr_400px] gap-12 items-center relative z-10">
+                    <!-- Número -->
+                    <div class="w-14 h-14 bg-[#1A2E1A] text-white rounded-full flex items-center justify-center font-bold text-xl shrink-0 z-10 md:mx-0 mx-auto border-4 border-brand-bg shadow-sm">4</div>
+                    
+                    <!-- Texto -->
+                    <div class="text-center md:text-left pr-8">
+                        <h3 class="text-brand-black font-bold text-[26px] mb-4" data-key="serv_4_title">Control de comercialización</h3>
+                        <p class="text-brand-gray leading-relaxed text-[16px]" data-key="serv_4_desc">Supervisión estratégica del destino de la producción y seguimiento de resultados comerciales alineados con los objetivos de rentabilidad.</p>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="h-[180px] w-full rounded-[2rem] overflow-hidden shadow-lg">
+                        <img src="./images/Seccion 2 - 4.webp" class="w-full h-full object-cover" alt="Control de comercialización">
+                    </div>
+                </div>
+
+                <!-- Servicio 5 -->
+                <div class="grid grid-cols-1 md:grid-cols-[60px_1fr_400px] gap-12 items-center relative z-10">
+                    <!-- Número -->
+                    <div class="w-14 h-14 bg-[#1A2E1A] text-white rounded-full flex items-center justify-center font-bold text-xl shrink-0 z-10 md:mx-0 mx-auto border-4 border-brand-bg shadow-sm">5</div>
+                    
+                    <!-- Texto -->
+                    <div class="text-center md:text-left pr-8">
+                        <h3 class="text-brand-black font-bold text-[26px] mb-4" data-key="serv_5_title">Operación integral - End to end</h3>
+                        <p class="text-brand-gray leading-relaxed text-[16px]" data-key="serv_5_desc">Gestión integral del campo y del negocio agrícola, desde la operación diaria hasta la información estratégica para el inversionista.</p>
+                    </div>
+
+                    <!-- Imagen -->
+                    <div class="h-[180px] w-full rounded-[2rem] overflow-hidden shadow-lg">
+                        <img src="./images/Seccion 2 - 5.webp" class="w-full h-full object-cover" alt="Operación integral">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. QUÉ HACEMOS DIFERENTE -->
+    <section id="why-us" class="py-24 bg-white">
+        <div class="max-w-[1300px] mx-auto px-6 md:px-12">
+            <div class="mb-16 max-w-[900px]">
+                <span class="text-brand-main font-bold text-[13px] tracking-widest uppercase mb-4 block" data-key="why_tag">// QUÉ HACEMOS
+                    DIFERENTE</span>
+                <h2 class="text-brand-black text-[2.5rem] md:text-[3rem] font-bold leading-tight"><span data-key="why_title_1">Integramos</span> <span
+                        class="text-brand-mainOscuro2" data-key="why_title_2">Eficiencia, Tecnología Y Sustentabilidad</span> <span data-key="why_title_3">Para Maximizar El Valor
+                    De La Inversión</span></h2>
+            </div>
+
+            <div class="cards-grid">
+                <!-- Tarjeta 1 (Grande) -->
+                <div class="card-large relative rounded-3xl overflow-hidden shadow-xl group min-h-[500px]">
+                    <img src="./images/Seccion3.webp"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Eficiencia">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    
+                    <div class="absolute top-1/2 -translate-y-1/2 left-6 md:left-12 max-w-sm bg-white/10 backdrop-blur-sm border border-white/20 p-5 rounded-3xl shadow-lg">
+                        <div class="w-12 h-12 bg-brand-main rounded-full flex items-center justify-center mb-4 text-white shadow-lg shadow-brand-main/30">
+                            <span class="material-symbols-outlined text-2xl">wind_power</span>
+                        </div>
+                        <h3 class="text-white font-bold text-2xl md:text-3xl mb-3" data-key="why_card_1_title">Eficiencia</h3>
+                        <p class="text-gray-100 text-[15px] leading-relaxed" data-key="why_card_1_desc">Maximizamos los resultados reduciendo
+                            costos a través de economías de escala, control riguroso de insumos y una gestión operativa
+                            optimizada.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="relative rounded-3xl overflow-hidden shadow-xl min-h-[400px] group">
+                    <img src="./images/Seccion3 - DGS-047.webp"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Tecnología">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    
+                    <div class="absolute bottom-6 left-12 right-12 bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-3xl shadow-lg">
+                        <div class="w-10 h-10 bg-brand-main rounded-full flex items-center justify-center mb-3 text-white shadow-lg shadow-brand-main/30">
+                            <span class="material-symbols-outlined text-xl">analytics</span>
+                        </div>
+                        <h3 class="text-white font-bold text-xl mb-2" data-key="why_card_2_title">Tecnología y datos</h3>
+                        <p class="text-gray-100 text-sm leading-relaxed" data-key="why_card_2_desc">Transformamos información en decisiones.
+                            Utilizamos datos reales, sistemas integrados y trazabilidad digital para apoyar la toma de
+                            decisiones y agregar valor.</p>
+                    </div>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="relative rounded-3xl overflow-hidden shadow-xl min-h-[400px] group">
+                    <img src="./images/Seccion3 - DGS-055.webp"
+                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Sustentabilidad">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    
+                    <div class="absolute bottom-6 left-12 right-12 bg-white/10 backdrop-blur-sm border border-white/20 p-4 rounded-3xl shadow-lg">
+                        <div class="w-10 h-10 bg-brand-main rounded-full flex items-center justify-center mb-3 text-white shadow-lg shadow-brand-main/30">
+                            <span class="material-symbols-outlined text-xl">volunteer_activism</span>
+                        </div>
+                        <h3 class="text-white font-bold text-xl mb-2" data-key="why_card_3_title">Sustentabilidad</h3>
+                        <p class="text-gray-100 text-sm leading-relaxed" data-key="why_card_3_desc">Integramos prácticas responsables que protegen
+                            el entorno, reducen riesgos y fortalecen el valor del activo en el tiempo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SEGUNDA BARRA DE MÉTRICAS -->
+    <section class="py-16 bg-brand-bg border-y border-gray-200">
+        <div class="max-w-[1300px] mx-auto px-6 md:px-12 text-center">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-gray-300">
+                <div class="px-4">
+                    <div class="text-brand-mainOscuro font-extrabold text-[3.5rem] leading-none mb-2">15M</div>
+                    <div class="text-brand-gray text-[15px] font-semibold uppercase tracking-wide" data-key="metrics_1_desc">Kilos exportados
+                    </div>
+                </div>
+                <div class="px-4">
+                    <div class="text-brand-mainOscuro font-extrabold text-[3.5rem] leading-none mb-2">+10</div>
+                    <div class="text-brand-gray text-[15px] font-semibold uppercase tracking-wide" data-key="metrics_2_desc">Productos diferentes
+                    </div>
+                </div>
+                <div class="px-4">
+                    <div class="text-brand-mainOscuro font-extrabold text-[3.5rem] leading-none mb-2">+22%</div>
+                    <div class="text-brand-gray text-[15px] font-semibold uppercase tracking-wide" data-key="metrics_3_desc">Rendimiento por
+                        hectárea</div>
+                </div>
+                <div class="px-4">
+                    <div class="text-brand-mainOscuro font-extrabold text-[3.5rem] leading-none mb-2">+3%</div>
+                    <div class="text-brand-gray text-[15px] font-semibold uppercase tracking-wide" data-key="metrics_4_desc">Apreciación del
+                        activo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. NUESTROS CLIENTES -->
+    <section id="clients" class="py-24 bg-white">
+        <div class="max-w-[1300px] mx-auto px-6 md:px-12">
+            
+            <!-- Encabezado con Imagen y Texto -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <!-- Imagen (Izquierda) -->
+                <div class="relative rounded-3xl overflow-hidden shadow-xl h-[400px] lg:h-[500px]">
+                    <img src="./images/DGS-065.webp" 
+                        class="absolute inset-0 w-full h-full object-cover" 
+                        alt="Nuestros Clientes">
+                </div>
+
+                <!-- Texto (Derecha) -->
+                <div class="flex flex-col justify-center">
+                    <span class="text-brand-main font-bold text-[13px] tracking-widest uppercase mb-4 block" data-key="clients_tag">// NUESTROS CLIENTES</span>
+                    <h2 class="text-brand-black text-[2.5rem] md:text-[3rem] font-bold leading-tight mb-6">
+                        <span data-key="clients_title_1">Inversionistas Que Buscan</span> <span class="text-brand-mainOscuro2" data-key="clients_title_2">Estructura, Control Y Visión De Largo Plazo</span>
+                    </h2>
+                    <p class="text-brand-gray text-[18px] leading-relaxed" data-key="clients_desc">
+                        Acompañamos a quienes buscan algo más que administrar un campo: buscan control real, información transparente y resultados sostenibles en el tiempo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grid de 4 columnas (Iconos y texto) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Cliente 1 -->
+                <div class="group">
+                    <div class="w-14 h-14 bg-brand-black rounded-full flex items-center justify-center shadow-md mb-6 text-white group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-2xl">family_restroom</span>
+                    </div>
+                    <h3 class="text-brand-black font-bold text-xl mb-3" data-key="client_1_title">Familias agrícolas</h3>
+                    <p class="text-brand-gray text-[15px] leading-relaxed" data-key="client_1_desc">
+                        Buscan profesionalizar la gestión del campo y asegurar continuidad generacional con orden y estructura.
+                    </p>
+                </div>
+
+                <!-- Cliente 2 -->
+                <div class="group">
+                    <div class="w-14 h-14 bg-brand-black rounded-full flex items-center justify-center shadow-md mb-6 text-white group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-2xl">corporate_fare</span>
+                    </div>
+                    <h3 class="text-brand-black font-bold text-xl mb-3" data-key="client_2_title">Family offices</h3>
+                    <p class="text-brand-gray text-[15px] leading-relaxed" data-key="client_2_desc">
+                        Invierten en agricultura con foco en gobernanza, control financiero y creación de valor en el tiempo.
+                    </p>
+                </div>
+
+                <!-- Cliente 3 -->
+                <div class="group">
+                    <div class="w-14 h-14 bg-brand-black rounded-full flex items-center justify-center shadow-md mb-6 text-white group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-2xl">trending_up</span>
+                    </div>
+                    <h3 class="text-brand-black font-bold text-xl mb-3" data-key="client_3_title">Empresarios inversionistas</h3>
+                    <p class="text-brand-gray text-[15px] leading-relaxed" data-key="client_3_desc">
+                        Diversifican su capital delegando la operación en un equipo experto con métricas y resultados claros.
+                    </p>
+                </div>
+
+                <!-- Cliente 4 -->
+                <div class="group">
+                    <div class="w-14 h-14 bg-brand-black rounded-full flex items-center justify-center shadow-md mb-6 text-white group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-2xl">account_balance</span>
+                    </div>
+                    <h3 class="text-brand-black font-bold text-xl mb-3" data-key="client_4_title">Inversionistas institucionales</h3>
+                    <p class="text-brand-gray text-[15px] leading-relaxed" data-key="client_4_desc">
+                        Exigen disciplina financiera, transparencia total y trazabilidad permanente del desempeño del activo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. SECCIÓN "NOSOTROS" -->
+    <section id="experience" class="py-24 bg-brand-bg">
+        <div class="max-w-[1300px] mx-auto px-6 md:px-12">
+            
+            <!-- Imagen Principal Nosotros -->
+            <div class="mb-16 rounded-3xl overflow-hidden shadow-xl h-[300px] md:h-[400px]">
+                <img src="./images/Foto sola.webp" class="w-full h-full object-cover" alt="Nuestra Experiencia">
+            </div>
+
+            <div class="mb-16 text-center max-w-[800px] mx-auto">
+                <span class="text-brand-main font-bold text-[13px] tracking-widest uppercase mb-4 block" data-key="team_tag">//
+                    NOSOTROS</span>
+                <h2 class="text-brand-black text-[2.5rem] md:text-[3rem] font-bold leading-tight mb-6"><span data-key="team_title_1">Más De 35 Años De</span>
+                    <span class="text-brand-mainOscuro2" data-key="team_title_2">Experiencia</span></h2>
+                <p class="text-brand-gray text-[18px] leading-relaxed" data-key="team_desc">Llevamos más de 35 años trabajando en
+                    agricultura. Hemos desarrollado un modelo en el que maximizamos la rentabilidad de los accionistas y
+                    creamos valor para los grupos de interés.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Perfil 1 -->
+                <div
+                    class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
+                    <div
+                        class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 shadow-xl border-4 border-brand-main/10">
+                        <img src="./images/guilermo (1).webp" class="w-full h-full object-cover object-top"
+                            alt="Guillermo Correa"
+                            onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop'">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-brand-black text-xl font-bold">Guillermo Correa Benedetti</h3>
+                        <p class="text-brand-main font-semibold text-sm mb-4" data-key="member_1_role">Gerente General</p>
+                        <p class="text-brand-gray text-sm leading-relaxed text-left" data-key="member_1_desc">Ingeniero Comercial y MBA del IE
+                            Business School de Madrid. Trabajó por seis años en Grupo ENEL, participando en operaciones
+                            financieras y M&A. Fundador de DGS, administradora de grandes inversiones agrícolas
+                            chilenas.</p>
+                    </div>
+                </div>
+                <!-- Perfil 2 -->
+                <div
+                    class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
+                    <div
+                        class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 shadow-xl border-4 border-brand-main/10">
+                        <img src="./images/Equipo-04.webp" class="w-full h-full object-cover object-top"
+                            alt="José Antonio Rodriguez"
+                            onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300&auto=format&fit=crop'">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-brand-black text-xl font-bold">José Antonio Rodriguez</h3>
+                        <p class="text-brand-main font-semibold text-sm mb-4" data-key="member_2_role">Socio</p>
+                        <p class="text-brand-gray text-sm leading-relaxed text-left" data-key="member_2_desc">Agrónomo PUC con más de 30 años
+                            desarrollando y gestionando inversiones agrícolas en diferentes especies como cítricos,
+                            paltas, frutos secos y carozos. Actualmente gestiona más de 220 hectáreas del grupo de alto
+                            rendimiento.</p>
+                    </div>
+                </div>
+                <!-- Perfil 3 -->
+                <div
+                    class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-transform duration-300">
+                    <div
+                        class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6 shadow-xl border-4 border-brand-main/10">
+                        <img src="./images/Equipo-05.webp" class="w-full h-full object-cover object-top"
+                            alt="Jaime Busquet"
+                            onerror="this.src='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&auto=format&fit=crop'">
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-brand-black text-xl font-bold">Jaime Busquet Herrera</h3>
+                        <p class="text-brand-main font-semibold text-sm mb-4" data-key="member_3_role">Socio</p>
+                        <p class="text-brand-gray text-sm leading-relaxed text-left" data-key="member_3_desc">Ingeniero Agrónomo y MBA PUC.
+                            Trabajando desde 1991 con el grupo. Actualmente también tiene sus propias inversiones en
+                            nueces. Fundó Growex, una empresa exitosa de exportación de frutos secos a nivel global.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. CTA FINAL -->
+    <section id="contact" class="py-32 relative flex items-center justify-center overflow-hidden min-h-[700px]">
+        <div class="absolute inset-0 z-0">
+            <img src="./images/DGS-077.webp"
+                class="w-full h-full object-cover" alt="Campo agrícola">
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+
+        <div class="max-w-[1000px] mx-auto px-6 relative z-10 text-center flex flex-col items-center">
+            <h2 class="text-white text-[3rem] md:text-[4.5rem] font-bold leading-tight mb-4 tracking-tight drop-shadow-lg" data-key="cta_title">Invertir Con DGS<br>Es Proyectar Hacia El Futuro</h2>
+            <p class="text-white/90 text-[16px] md:text-[18px] font-normal leading-relaxed mb-12 max-w-3xl drop-shadow-md" data-key="cta_desc">
+                Confía en la experiencia, la innovación y la transparencia de DGS para convertir la agricultura en una
+                oportunidad de inversión profesional, rentable y sostenible.
+            </p>
+
+            <a href="#contact"
+                class="inline-flex items-center gap-3 bg-[#F5F9F0] text-brand-black font-bold text-[15px] pl-6 pr-2 py-2 rounded-full hover:bg-white transition-all duration-300 shadow-xl mb-16 hover:scale-105">
+                <span data-key="cta_btn">Contáctanos</span>
+                <div class="w-8 h-8 bg-brand-black rounded-full flex items-center justify-center text-white">
+                     <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                </div>
+            </a>
+
+            <!-- Contact Info Row -->
+            <div class="flex flex-wrap items-center justify-center gap-6 md:gap-12">
+                <!-- Email -->
+                <div class="flex items-center gap-3">
+                     <div class="w-8 h-8 bg-brand-main rounded-full flex items-center justify-center text-white shrink-0">
+                        <span class="material-symbols-outlined text-[16px]">mail</span>
+                     </div>
+                     <span class="text-white text-sm font-medium">contacto@dgs.cl</span>
+                </div>
+
+                <!-- LinkedIn -->
+                 <div class="flex items-center gap-3">
+                     <div class="w-8 h-8 bg-brand-main rounded-full flex items-center justify-center text-white shrink-0">
+                        <span class="text-[14px] font-bold">in</span>
+                     </div>
+                     <span class="text-white text-sm font-medium" data-key="contact_linkedin">Linkedin DGS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER -->
+    <footer class="bg-[#0F1610] py-16 border-t border-white/5">
+        <div class="max-w-[1300px] mx-auto px-6 md:px-12">
+            
+            <!-- Logo area -->
+            <div class="flex items-center gap-4 mb-24">
+                <span class="text-3xl font-extrabold text-white tracking-tighter">DGS</span>
+                <div class="w-[1px] h-8 bg-white/20"></div>
+                <div class="flex flex-col leading-none text-white/60 text-[9px] tracking-wider font-medium">
+                    <span data-key="logo_sub_1">AGRICULTURAL</span>
+                    <span data-key="logo_sub_2">INVESTMENTS</span>
+                    <span data-key="logo_sub_3">IN A SUSTAINABLE WAY</span>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="w-full h-[1px] bg-white/10 mb-8"></div>
+
+            <!-- Bottom area -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-[#666666] text-xs font-medium">
+                <p data-key="footer_rights">&copy; 2026 DGS – All Rights Reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors" data-key="footer_privacy">Privacy Policy</a>
+                    <span>&</span>
+                    <a href="#" class="hover:text-white transition-colors" data-key="footer_terms">Term of Use</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for sticky navbar effect and simple animations -->
+    <script>
+        // Translations
+        const translations = {
+            es: {
+                // Nav
+                nav_home: "Inicio",
+                nav_services: "Qué hacemos",
+                nav_why_us: "Por qué elegirnos",
+                nav_clients: "Nuestros clientes",
+                nav_experience: "Nuestra experiencia",
+                nav_contact: "Contáctanos",
+                
+                // Hero
+                hero_tag: "Transformamos la forma de invertir en agricultura",
+                hero_title_1: "Gestión agrícola",
+                hero_title_2: "Profesional.",
+                hero_title_3: "Integral.",
+                hero_title_4: "Rentable",
+                hero_subtitle: "Administramos tu inversión agrícola de principio a fin con servicios integrados, gestión profesional y tecnología para maximizar la rentabilidad de manera sustentable.",
+                hero_cta: "Contáctanos",
+
+                // Header & Footer Logo
+                logo_sub_1: "INVERSIONES",
+                logo_sub_2: "AGRÍCOLAS",
+                logo_sub_3: "DE MANERA SOSTENIBLE",
+
+                // Metrics 1
+                metrics1_1_desc: "Hectáreas administradas",
+                metrics1_2_desc: "Kilos de fruta producidos al año",
+                metrics1_3_desc: "Disminución en costos operativos",
+                metrics1_4_desc: "Incremento promedio en rendimiento por hectárea",
+
+                // Services
+                services_tag: "// NUESTRO MODELO DE SERVICIOS",
+                services_title_1: "Nos Hacemos Cargo De",
+                services_title_2: "Cada Etapa",
+                services_title_3: "Del Negocio Agrícola",
+                services_desc: "Desde la identificación del campo hasta la operación integral del negocio y la comercialización. Gestionamos cada etapa con visión estratégica, disciplina financiera y ejecución profesional.",
+                
+                serv_1_title: "Identificación y evaluación de campos",
+                serv_1_desc: "Identificación y análisis técnico, productivo y financiero de oportunidades agrícolas para decisiones de inversión informadas.",
+                serv_2_title: "Desarrollo de proyecto",
+                serv_2_desc: "Planificación e implementación del proyecto agrícola: diseño productivo, infraestructura, estructura operativa y modelo de gestión.",
+                serv_3_title: "Administración del negocio agrícola",
+                serv_3_desc: "Gestión administrativa, financiera y estratégica del negocio, asegurando orden, trazabilidad y control permanente.",
+                serv_4_title: "Control de comercialización",
+                serv_4_desc: "Supervisión estratégica del destino de la producción y seguimiento de resultados comerciales alineados con los objetivos de rentabilidad.",
+                serv_5_title: "Operación integral - End to end",
+                serv_5_desc: "Gestión integral del campo y del negocio agrícola, desde la operación diaria hasta la información estratégica para el inversionista.",
+
+                // Why Us
+                why_tag: "// QUÉ HACEMOS DIFERENTE",
+                why_title_1: "Integramos",
+                why_title_2: "Eficiencia, Tecnología Y Sustentabilidad",
+                why_title_3: "Para Maximizar El Valor De La Inversión",
+                why_card_1_title: "Eficiencia",
+                why_card_1_desc: "Maximizamos los resultados reduciendo costos a través de economías de escala, control riguroso de insumos y una gestión operativa optimizada.",
+                why_card_2_title: "Tecnología y datos",
+                why_card_2_desc: "Transformamos información en decisiones. Utilizamos datos reales, sistemas integrados y trazabilidad digital para apoyar la toma de decisiones y agregar valor.",
+                why_card_3_title: "Sustentabilidad",
+                why_card_3_desc: "Integramos prácticas responsables que protegen el entorno, reducen riesgos y fortalecen el valor del activo en el tiempo.",
+
+                // Metrics 2
+                metrics_1_desc: "Kilos exportados",
+                metrics_2_desc: "Productos diferentes",
+                metrics_3_desc: "Rendimiento por hectárea",
+                metrics_4_desc: "Apreciación del activo",
+
+                // Clients
+                clients_tag: "// NUESTROS CLIENTES",
+                clients_title_1: "Inversionistas Que Buscan",
+                clients_title_2: "Estructura, Control Y Visión De Largo Plazo",
+                clients_desc: "Acompañamos a quienes buscan algo más que administrar un campo: buscan control real, información transparente y resultados sostenibles en el tiempo.",
+                
+                client_1_title: "Familias agrícolas",
+                client_1_desc: "Buscan profesionalizar la gestión del campo y asegurar continuidad generacional con orden y estructura.",
+                client_2_title: "Family offices",
+                client_2_desc: "Invierten en agricultura con foco en gobernanza, control financiero y creación de valor en el tiempo.",
+                client_3_title: "Empresarios inversionistas",
+                client_3_desc: "Diversifican su capital delegando la operación en un equipo experto con métricas y resultados claros.",
+                client_4_title: "Inversionistas institucionales",
+                client_4_desc: "Exigen disciplina financiera, transparencia total y trazabilidad permanente del desempeño del activo.",
+
+                // Experience / Team
+                team_tag: "// NOSOTROS",
+                team_title_1: "Más De 35 Años De",
+                team_title_2: "Experiencia",
+                team_desc: "Llevamos más de 35 años trabajando en agricultura. Hemos desarrollado un modelo en el que maximizamos la rentabilidad de los accionistas y creamos valor para los grupos de interés.",
+                
+                member_1_role: "Gerente General",
+                member_1_desc: "Ingeniero Comercial y MBA del IE Business School de Madrid. Trabajó por seis años en Grupo ENEL, participando en operaciones financieras y M&A. Fundador de DGS, administradora de grandes inversiones agrícolas chilenas.",
+                member_2_role: "Socio",
+                member_2_desc: "Agrónomo PUC con más de 30 años desarrollando y gestionando inversiones agrícolas en diferentes especies como cítricos, paltas, frutos secos y carozos. Actualmente gestiona más de 220 hectáreas del grupo de alto rendimiento.",
+                member_3_role: "Socio",
+                member_3_desc: "Ingeniero Agrónomo y MBA PUC. Trabajando desde 1991 con el grupo. Actualmente también tiene sus propias inversiones en nueces. Fundó Growex, una empresa exitosa de exportación de frutos secos a nivel global.",
+
+                // Contact CTA
+                cta_title: "Invertir Con DGS Es Proyectar Hacia El Futuro",
+                cta_desc: "Confía en la experiencia, la innovación y la transparencia de DGS para convertir la agricultura en una oportunidad de inversión profesional, rentable y sostenible.",
+                cta_btn: "Contáctanos",
+                contact_linkedin: "Linkedin DGS",
+
+                // Footer
+                footer_rights: "© 2026 DGS – Todos los derechos reservados.",
+                footer_privacy: "Política de Privacidad",
+                footer_terms: "Términos de Uso"
+            },
+            en: {
+                // Nav
+                nav_home: "Home",
+                nav_services: "What we do",
+                nav_why_us: "Why choose us",
+                nav_clients: "Our clients",
+                nav_experience: "Our experience",
+                nav_contact: "Contact us",
+                
+                // Hero
+                hero_tag: "Transforming the way to invest in agriculture",
+                hero_title_1: "Agricultural Management",
+                hero_title_2: "Professional.",
+                hero_title_3: "Comprehensive.",
+                hero_title_4: "Profitable",
+                hero_subtitle: "We manage your agricultural investment from start to finish with integrated services, professional management, and technology to maximize profitability sustainably.",
+                hero_cta: "Contact us",
+
+                // Header & Footer Logo
+                logo_sub_1: "AGRICULTURAL",
+                logo_sub_2: "INVESTMENTS",
+                logo_sub_3: "IN A SUSTAINABLE WAY",
+
+                // Metrics 1
+                metrics1_1_desc: "Managed hectares",
+                metrics1_2_desc: "Kilos of fruit produced per year",
+                metrics1_3_desc: "Decrease in operating costs",
+                metrics1_4_desc: "Average increase in yield per hectare",
+
+                // Services
+                services_tag: "// OUR SERVICE MODEL",
+                services_title_1: "We Take Charge Of",
+                services_title_2: "Every Stage",
+                services_title_3: "Of The Agricultural Business",
+                services_desc: "From field identification to integral business operation and commercialization. We manage every stage with strategic vision, financial discipline, and professional execution.",
+                
+                serv_1_title: "Field identification and evaluation",
+                serv_1_desc: "Identification and technical, productive, and financial analysis of agricultural opportunities for informed investment decisions.",
+                serv_2_title: "Project development",
+                serv_2_desc: "Planning and implementation of the agricultural project: productive design, infrastructure, operational structure, and management model.",
+                serv_3_title: "Agricultural business administration",
+                serv_3_desc: "Administrative, financial, and strategic management of the business, ensuring order, traceability, and permanent control.",
+                serv_4_title: "Commercialization control",
+                serv_4_desc: "Strategic supervision of production destination and monitoring of commercial results aligned with profitability objectives.",
+                serv_5_title: "Integral operation - End to end",
+                serv_5_desc: "Integral management of the field and agricultural business, from daily operation to strategic information for the investor.",
+
+                // Why Us
+                why_tag: "// WHAT WE DO DIFFERENTLY",
+                why_title_1: "We Integrate",
+                why_title_2: "Efficiency, Technology And Sustainability",
+                why_title_3: "To Maximize Investment Value",
+                why_card_1_title: "Efficiency",
+                why_card_1_desc: "We maximize results by reducing costs through economies of scale, rigorous input control, and optimized operational management.",
+                why_card_2_title: "Technology and data",
+                why_card_2_desc: "We transform information into decisions. We use real data, integrated systems, and digital traceability to support decision-making and add value.",
+                why_card_3_title: "Sustainability",
+                why_card_3_desc: "We integrate responsible practices that protect the environment, reduce risks, and strengthen asset value over time.",
+
+                // Metrics 2
+                metrics_1_desc: "Kilos exported",
+                metrics_2_desc: "Different products",
+                metrics_3_desc: "Yield per hectare",
+                metrics_4_desc: "Asset appreciation",
+
+                // Clients
+                clients_tag: "// OUR CLIENTS",
+                clients_title_1: "Investors Who Seek",
+                clients_title_2: "Structure, Control And Long-Term Vision",
+                clients_desc: "We accompany those who seek more than just managing a field: they seek real control, transparent information, and sustainable results over time.",
+                
+                client_1_title: "Agricultural families",
+                client_1_desc: "They seek to professionalize field management and ensure generational continuity with order and structure.",
+                client_2_title: "Family offices",
+                client_2_desc: "They invest in agriculture focusing on governance, financial control, and value creation over time.",
+                client_3_title: "Business investors",
+                client_3_desc: "They diversify their capital by delegating operations to an expert team with clear metrics and results.",
+                client_4_title: "Institutional investors",
+                client_4_desc: "They demand financial discipline, total transparency, and permanent traceability of asset performance.",
+
+                // Experience / Team
+                team_tag: "// ABOUT US",
+                team_title_1: "More Than 35 Years Of",
+                team_title_2: "Experience",
+                team_desc: "We have been working in agriculture for over 35 years. We have developed a model in which we maximize shareholder profitability and create value for stakeholders.",
+                
+                member_1_role: "General Manager",
+                member_1_desc: "Commercial Engineer and MBA from IE Business School in Madrid. Worked for six years at ENEL Group, participating in financial operations and M&A. Founder of DGS, administrator of large Chilean agricultural investments.",
+                member_2_role: "Partner",
+                member_2_desc: "PUC Agronomist with over 30 years developing and managing agricultural investments in different species such as citrus, avocados, nuts, and stone fruits. Currently manages over 220 hectares of the high-performance group.",
+                member_3_role: "Partner",
+                member_3_desc: "Agronomist Engineer and MBA PUC. Working with the group since 1991. Currently also has his own walnut investments. Founded Growex, a successful global nut export company.",
+
+                // Contact CTA
+                cta_title: "Investing With DGS Is Projecting Towards The Future",
+                cta_desc: "Trust DGS's experience, innovation, and transparency to turn agriculture into a professional, profitable, and sustainable investment opportunity.",
+                cta_btn: "Contact us",
+                contact_linkedin: "DGS Linkedin",
+
+                // Footer
+                footer_rights: "© 2026 DGS – All Rights Reserved.",
+                footer_privacy: "Privacy Policy",
+                footer_terms: "Terms of Use"
+            }
+        };
+
+        // Language Switcher Logic
+        function toggleLangDropdown() {
+            const dropdown = document.getElementById('lang-dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const dropdown = document.getElementById('lang-dropdown');
+            const btn = document.getElementById('lang-btn');
+            
+            // If dropdown exists, is open, and click is NOT on button or dropdown
+            if (dropdown && !dropdown.classList.contains('hidden') && !btn.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.classList.add('hidden');
+            }
+        });
+
+        function changeLanguage(lang) {
+            // Close dropdown if open (for desktop view)
+            const dropdown = document.getElementById('lang-dropdown');
+            if(dropdown) {
+                dropdown.classList.add('hidden');
+            }
+
+            const elements = document.querySelectorAll('[data-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Update Flag and Text in Header
+            const currentFlag = document.getElementById('current-flag');
+            const currentLang = document.getElementById('current-lang');
+            
+            if (lang === 'es') {
+                currentFlag.textContent = '🇪🇸';
+                currentLang.textContent = 'ES';
+            } else {
+                currentFlag.textContent = '🇺🇸';
+                currentLang.textContent = 'EN';
+            }
+        }
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        }
+
+        function toggleMobileMenu() {
+            if (!mobileMenu) return;
+            const isHidden = mobileMenu.classList.contains('translate-x-full');
+            if (isHidden) {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            } else {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
+            }
+        });
+
+        // Simple Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Add hidden class to elements we want to animate
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            if (!el.classList.contains('fade-in')) {
+                el.style.opacity = '0';
+                observer.observe(el);
+            }
+        });
+    </script>
+</body>
+
+
+</html>
+
